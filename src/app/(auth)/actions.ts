@@ -15,7 +15,7 @@ export const signUp = async (formData: SignupInput) => {
     email: formData.email,
     password: formData.password,
     options: {
-      emailRedirectTo: `${origin}/auth/callback`,
+      emailRedirectTo: `${origin}/auth/confirm`,
     },
   });
   if (error) {
@@ -38,6 +38,6 @@ export const signIn = async (data: LoginInput) => {
       error: error.message,
     };
   } else {
-    redirect("auth/callback");
+    redirect("auth/confirm?next=dashboard");
   }
 };

@@ -1,14 +1,12 @@
 "use client";
 
+import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/client";
 import type { Provider } from "@supabase/supabase-js";
-import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import { Icons } from "@/components/icons";
 
 const OauthButton: React.FC<{ provider: Provider }> = ({ provider }) => {
-  const pathname = usePathname();
   const supabase = createClient();
 
   const [error, setError] = useState<string | null>(null);
@@ -17,7 +15,7 @@ const OauthButton: React.FC<{ provider: Provider }> = ({ provider }) => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: provider,
       options: {
-        redirectTo: `${location.origin}/auth/callback?next=${pathname}`,
+        redirectTo: `${location.origin}/auth/callback?next=dashboard`,
       },
     });
 
