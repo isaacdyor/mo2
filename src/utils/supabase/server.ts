@@ -15,6 +15,7 @@ export function createClient() {
         },
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value, options }) =>
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             cookieStore.set(name, value, options),
           );
         },
