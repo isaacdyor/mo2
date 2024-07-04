@@ -17,8 +17,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 
-import OauthButton from "@/components/auth/OAuthButton";
 import { signUp } from "../actions";
+import OauthButton from "@/components/auth/oauth-button";
 
 const registerSchema = z.object({
   email: z.string().email(),

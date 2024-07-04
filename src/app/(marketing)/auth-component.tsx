@@ -1,7 +1,8 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ProfileButton } from "./ProfileButton";
+
+import { Icons } from "@/components/icons";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 const AuthComponent = async () => {
   const supabase = createClient();
@@ -11,8 +12,15 @@ const AuthComponent = async () => {
   } = await supabase.auth.getUser();
 
   if (authUser) {
-    // const user = await api.users.getCurrent.query();
-    return <ProfileButton user={authUser} />;
+    return (
+      <Link
+        href="/dashboard"
+        className={buttonVariants({ variant: "outline" })}
+      >
+        Dashboard
+        <Icons.chevronRight className="ml-1 h-4 w-4" />
+      </Link>
+    );
   } else {
     return (
       <div className="hidden items-center gap-2 sm:flex">
